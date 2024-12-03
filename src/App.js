@@ -1,24 +1,26 @@
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
+
+class Item {
+  constructor(name, price, quantity) {
+    this.name = name;
+    this.price = price;
+    this.quantity = quantity;
+  }
+}
+
+const products = [new Item("Apple", 2.99, 20), new Item("T-Shirt", 15.99, 10), new Item("Jeans", 12.99, 12)];
+const productsList = products.map((product) => <li>{product.name} {product.price} {product.quantity}</li>)
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    RenderProducts()
+  );
+}
+
+function RenderProducts() {
+  return (
+    <ul>{productsList}</ul>
   );
 }
 
