@@ -1,26 +1,46 @@
 //import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
-
-class Item {
-  constructor(name, price, quantity) {
-    this.name = name;
-    this.price = price;
-    this.quantity = quantity;
-  }
-}
-
-const products = [new Item("Apple", 2.99, 20), new Item("T-Shirt", 15.99, 10), new Item("Jeans", 12.99, 12)];
-const productsList = products.map((product) => <li>{product.name} {product.price} {product.quantity}</li>)
 
 function App() {
   return (
-    RenderProducts()
+    <>
+      <EnterProduct></EnterProduct>
+      <DisplayProductList></DisplayProductList>
+    </>
   );
 }
 
-function RenderProducts() {
+var productList = [];
+
+function EnterProduct() {
+  const [product, setProduct] = useState("");
+
+  const addProduct = () => {
+    productList.push(product);
+  }
+
+  const changeProduct = (event) => {
+    setProduct(event.target.value);
+  }
+
   return (
-    <ul>{productsList}</ul>
+    <>
+      <input type='text' value={product} onChange={changeProduct}/>
+      <button onClick={addProduct}>Add</button>
+    </>
+  );
+}
+
+function DisplayProductList() {
+  const products = productList.map((product, index) => <li key={index}>{product}</li>)
+
+  return (
+    <>
+      <ul>
+        {products}
+      </ul>
+    </>
   );
 }
 
