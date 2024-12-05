@@ -1,23 +1,24 @@
-//import logo from './logo.svg';
 import React, { useState } from 'react';
+import { useLocalStorage } from "@uidotdev/usehooks";
 import './App.css';
 
 function App() {
   return (
-    <>
+    <div>
       <EnterProduct></EnterProduct>
-    </>
+    </div>
   );
 }
 
 function EnterProduct() {
-  const [productList, setProductList] = useState([]);
+  const [productList, setProductList] = useLocalStorage("productList", []);
   const [product, setProduct] = useState("");
-  const [purchased, setPurchased] = useState([]);
+  const [purchased, setPurchased] = useLocalStorage("purchased", []);
   const [active, setActive] = useState(-1);
 
   const addProduct = () => {
-    setProductList(productList => [...productList, [product]]);
+    if (product.length !== 0)setProductList(productList => [...productList, [product]]);
+    setProduct("");
   }
 
   const changeProduct = (event) => {
