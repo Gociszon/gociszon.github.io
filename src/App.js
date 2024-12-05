@@ -6,18 +6,16 @@ function App() {
   return (
     <>
       <EnterProduct></EnterProduct>
-      <DisplayProductList></DisplayProductList>
     </>
   );
 }
 
-var productList = [];
-
 function EnterProduct() {
+  const [productList, setProductList] = useState([]);
   const [product, setProduct] = useState("");
 
   const addProduct = () => {
-    productList.push(product);
+    setProductList(productList => [...productList, [product]]);
   }
 
   const changeProduct = (event) => {
@@ -28,20 +26,13 @@ function EnterProduct() {
     <>
       <input type='text' value={product} onChange={changeProduct}/>
       <button onClick={addProduct}>Add</button>
-    </>
-  );
-}
 
-function DisplayProductList() {
-  const products = productList.map((product, index) => <li key={index}>{product}</li>)
-
-  return (
-    <>
       <ul>
-        {products}
+        {productList.map((product, index) => <li key={index}>{product}</li>)}
       </ul>
     </>
   );
 }
+
 
 export default App;
