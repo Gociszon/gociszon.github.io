@@ -1,11 +1,16 @@
 .purchased {
   text-decoration: line-through;
-}
-
-.purchased:hover {
   cursor: pointer;
 }
 
-.product:hover {
+.product {
   cursor: pointer;
+}
+
+li {
+  width: fit-content;
+}
+
+button {
+  margin-left: 10px;
 }
