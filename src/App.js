@@ -13,7 +13,8 @@ function App() {
 function EnterProduct() {
   const [productList, setProductList] = useState([]);
   const [product, setProduct] = useState("");
-  const [style, setStyle] = useState("product");
+  const [purchased, setPurchased] = useState("product");
+  const [remove, setRemove] = useState({display: 'none'});
 
   const addProduct = () => {
     setProductList(productList => [...productList, [product]]);
@@ -23,13 +24,14 @@ function EnterProduct() {
     setProduct(event.target.value);
   }
 
-  const deleteProduct = () => {
-
+  const deleteProduct = (productToDelete) => {
+    const updatedProducts = productList.filter(product => product !== productToDelete);
+        setProductList(updatedProducts);
   }
 
   const changePurchased = () => {
-    if (style !== 'purchased') setStyle("purchased");
-    else setStyle("product");
+    if (purchased !== 'purchased') setPurchased("purchased");
+    else setPurchased("product");
   }
 
   return (
@@ -37,13 +39,16 @@ function EnterProduct() {
       <input type='text' value={product} onChange={changeProduct}/>
       <button onClick={addProduct}>Add</button>
 
-      <ul>
-        {productList.map((product, index) => <li key={index}>
-          <p><span onClick={changePurchased} className={style}>{product}</span>
-          <button style={{backgroundColor: "red", width: "25px", height: "25px"}} onClick={deleteProduct}></button>
+      <ol>
+        {productList.map((product, index) => <li key={index}
+         onMouseEnter={e => {setRemove({display: 'inline'})}}
+         onMouseLeave={e => {setRemove({display: 'none'})}}
+         >
+          <p><span onClick={changePurchased} className={purchased}>{product}</span>
+          <button onClick={() => deleteProduct(product)} style={remove}>RM</button>
           </p>
           </li>)}
-      </ul>
+      </ol>
     </>
   );
 }
