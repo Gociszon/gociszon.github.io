@@ -50,10 +50,11 @@ function EnterProduct() {
          onMouseEnter={() => setActive(index)}
          onMouseLeave={() => setActive(-1)}
          >
-          <p><span onClick={() => changePurchased(index)} className={purchased.includes(index) ? "purchased" : "product"}>{product}</span>
-          <button onClick={() => deleteProduct(product, index)} style={{display: active === index ? "inline" : "none"}}>RM</button>
-          </p>
-          </li>)}
+          <div><span onClick={() => changePurchased(index)} className={purchased.includes(index) ? "purchased" : "product"}>{product}</span>
+          <button onClick={() => deleteProduct(product, index)} style={{display: active === index ? "inline" : "none"}} className='remove'>Remove</button>
+          </div>
+          </li>
+        )}
       </ol>
     </>
   );

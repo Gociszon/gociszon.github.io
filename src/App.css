@@ -7,8 +7,16 @@
   cursor: pointer;
 }
 
+.remove {
+  text-align: center;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
 li {
   width: fit-content;
+  font-size: 20px;
+  height: 25px;
 }
 
 button {
